@@ -8,6 +8,8 @@ public class GameHUD : MonoBehaviour
 
     private bool gameEnded = false;
 
+    public PauseManager pauseManager;
+
     public TMP_Text playersText;
     public TMP_Text timeText;
 
@@ -20,6 +22,11 @@ public class GameHUD : MonoBehaviour
     void Update()
     {
         if (gameEnded)
+        {
+            return;
+        }
+
+        if (pauseManager != null && pauseManager.IsPaused())
         {
             return;
         }
