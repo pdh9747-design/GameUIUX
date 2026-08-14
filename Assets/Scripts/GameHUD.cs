@@ -1,5 +1,6 @@
 using UnityEngine;
 using TMPro;
+using UnityEngine.EventSystems;
 
 public class GameHUD : MonoBehaviour
 {
@@ -8,6 +9,8 @@ public class GameHUD : MonoBehaviour
 
     public GameObject toastText;
     public GameObject resultPanel;
+    public GameObject resultTitleButton;
+    public GameObject gameTitle;
 
     public PauseManager pauseManager;
 
@@ -45,9 +48,7 @@ public class GameHUD : MonoBehaviour
             {
                 time = 0;
                 gameEnded = true;
-
                 timeText.text = "Time: 0";
-
                 Debug.Log("게임 종료!");
             }
 
@@ -96,5 +97,13 @@ public class GameHUD : MonoBehaviour
     {
         resultPanel.SetActive(true);
         gameEnded = true;
+
+        EventSystem.current.SetSelectedGameObject(null);
+
+        GameObject button = resultTitleButton;
+
+        EventSystem.current.SetSelectedGameObject(button);
+
+        Debug.Log("현재 선택된 UI: " + EventSystem.current.currentSelectedGameObject);
     }
 }
