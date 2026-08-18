@@ -96,6 +96,8 @@ public class GameHUD : MonoBehaviour
     public void ShowResult()
     {
         resultPanel.SetActive(true);
+        gameTitle.SetActive(false);
+
         gameEnded = true;
 
         EventSystem.current.SetSelectedGameObject(null);
