@@ -6,6 +6,7 @@ public class GameHUD : MonoBehaviour
 {
     public TMP_Text playersText;
     public TMP_Text timeText;
+    public TMP_Text taggerText;
 
     public GameObject toastText;
     public GameObject resultPanel;
@@ -17,12 +18,15 @@ public class GameHUD : MonoBehaviour
     public int players = 5;
     public float time = 60f;
 
+    private int taggerCount = 1;
+
     private bool gameEnded = false;
 
     void Start()
     {
         playersText.text = "Players: " + players;
         timeText.text = "Time: " + Mathf.CeilToInt(time);
+        taggerText.text = "술래: " + taggerCount;
 
         toastText.SetActive(false);
         resultPanel.SetActive(false);
@@ -48,7 +52,9 @@ public class GameHUD : MonoBehaviour
             {
                 time = 0;
                 gameEnded = true;
+
                 timeText.text = "Time: 0";
+
                 Debug.Log("게임 종료!");
             }
 
@@ -70,11 +76,16 @@ public class GameHUD : MonoBehaviour
 
         playersText.text = "Players: " + players;
 
+        taggerCount++;
+        taggerText.text = "술래: " + taggerCount;
+
         ShowPlayerFound();
 
         if (players <= 0)
         {
             players = 0;
+            playersText.text = "Players: 0";
+
             ShowResult();
         }
     }
